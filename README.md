@@ -18,7 +18,7 @@ Create a lambda function with the following supports.
 
 ```hcl
 module "lambda" {
-  source = "lambda-auto-package"
+  source  = "nozaq/lambda-auto-package/aws"
 
   source_dir  = "${path.module}/source"
   output_path = "${path.module}/source.zip"
