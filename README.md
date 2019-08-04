@@ -1,5 +1,7 @@
 # terraform-aws-lambda-auto-package
 
+[![CircleCI](https://circleci.com/gh/nozaq/terraform-aws-lambda-auto-package.svg?style=svg)](https://circleci.com/gh/nozaq/terraform-aws-lambda-auto-package)
+
 A terraform module to define a lambda function which source files are automatically built and packaged for lambda deployment.
 
 ## Features
