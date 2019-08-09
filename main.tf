@@ -18,6 +18,8 @@ resource "aws_iam_role" "this" {
   ]
 }
 EOF
+
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy_attachment" "basic" {
@@ -39,7 +41,8 @@ resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
   retention_in_days = var.retention_in_days
   kms_key_id        = var.kms_key_id
-  tags              = var.tags
+
+  tags = var.tags
 }
 
 #---------------------------------------------------------------------------------------------------
@@ -47,10 +50,6 @@ resource "aws_cloudwatch_log_group" "this" {
 #---------------------------------------------------------------------------------------------------
 
 resource "aws_lambda_function" "this" {
-  lifecycle {
-    ignore_changes = [filename]
-  }
-
   filename         = data.archive_file.source.output_path
   role             = aws_iam_role.this.arn
   source_code_hash = data.archive_file.source.output_base64sha256
@@ -64,7 +63,6 @@ resource "aws_lambda_function" "this" {
   layers                         = var.layers
   timeout                        = var.timeout
   publish                        = var.publish
-  tags                           = var.tags
 
   dynamic "dead_letter_config" {
     for_each = var.dead_letter_config == null ? [] : [var.dead_letter_config]
@@ -93,6 +91,12 @@ resource "aws_lambda_function" "this" {
       security_group_ids = vpc_config.value.security_group_ids
       subnet_ids         = vpc_config.value.subnet_ids
     }
+  }
+
+  tags = var.tags
+
+  lifecycle {
+    ignore_changes = [filename]
   }
 }
 
