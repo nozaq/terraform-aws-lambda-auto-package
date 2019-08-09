@@ -69,7 +69,7 @@ Check [examples](./examples) for non-python examples.
 | retention\_in\_days | Specifies the number of days you want to retain log events in the specified log group. | number | `"null"` | no |
 | runtime | The identifier of the function's runtime. | string | n/a | yes |
 | source\_dir | A path to the directory which contains source files. | string | n/a | yes |
-| tags | A mapping of tags to assign to the object. | map | `{}` | no |
+| tags | A mapping of tags to assign to resources. | map | `{ "Terraform": "true" }` | no |
 | timeout | The maximum number of seconds the lambda function to run until timeout. | string | `"3"` | no |
 | tracing\_config | Can be either PassThrough or Active. If PassThrough, Lambda will only trace the request from an upstream service if it contains a tracing header with "sampled=1". If Active, Lambda will respect any tracing header it receives from an upstream service. If no tracing header is received, Lambda will call X-Ray for a tracing decision. | object | `"null"` | no |
 | vpc\_config | Provide this to allow your function to access your VPC. | string | `"null"` | no |

@@ -1,4 +1,14 @@
 #---------------------------------------------------------------------------------------------------
+# General
+#---------------------------------------------------------------------------------------------------
+variable "tags" {
+  description = "A mapping of tags to assign to resources."
+  default = {
+    Terraform = "true"
+  }
+}
+
+#---------------------------------------------------------------------------------------------------
 # Build arguments
 #---------------------------------------------------------------------------------------------------
 variable "build_command" {
@@ -125,9 +135,4 @@ variable "kms_key_arn" {
   description = "The ARN for the KMS encryption key."
   type        = string
   default     = null
-}
-
-variable "tags" {
-  description = "A mapping of tags to assign to the object."
-  default     = {}
 }
