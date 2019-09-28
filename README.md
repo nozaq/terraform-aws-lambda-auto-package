@@ -1,6 +1,6 @@
 # terraform-aws-lambda-auto-package
 
-[![CircleCI](https://circleci.com/gh/nozaq/terraform-aws-lambda-auto-package.svg?style=svg)](https://circleci.com/gh/nozaq/terraform-aws-lambda-auto-package)
+[![Github Actions](https://github.com/nozaq/terraform-aws-lambda-auto-package/workflows/Terraform/badge.svg)](https://github.com/nozaq/terraform-aws-lambda-auto-package/actions?workflow=Terraform)
 
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/lambda-auto-package/aws)
 
