@@ -7,12 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1.0.0
+      uses: actions/checkout@master
 
-    - name: terraform fmt
-      uses: hashicorp/terraform-github-actions/fmt@v0.4.4
+    - name: 'Terraform Format'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'fmt'
+        tf_actions_working_dir: '.'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "."
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   validate-examples:
     name: Validate examples
@@ -21,22 +26,42 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: terraform init - examples/simple-nodejs
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/simple-nodejs'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/simple-nodejs'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple-nodejs"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/simple-nodejs
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/simple-nodejs'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/simple-nodejs'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple-nodejs"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform init - examples/simple-py
-      uses: hashicorp/terraform-github-actions/init@v0.4.4
+    - name: 'Terraform Init - examples/simple-py'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'init'
+        tf_actions_working_dir: './examples/simple-py'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple-py"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: terraform validate - examples/simple-py
-      uses: hashicorp/terraform-github-actions/validate@v0.4.4
+    - name: 'Terraform Validate - examples/simple-py'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 0.12.15
+        tf_actions_subcommand: 'validate'
+        tf_actions_working_dir: './examples/simple-py'
+        tf_actions_comment: true
       env:
-        TF_ACTION_WORKING_DIR: "./examples/simple-py"
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
