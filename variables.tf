@@ -19,7 +19,6 @@ variable "build_command" {
 
 variable "build_triggers" {
   description = "A map of values which should cause the build command to re-run. Values are meant to be interpolated references to variables or attributes of other resources."
-  type        = list(string)
   default     = []
 }
 
@@ -39,6 +38,7 @@ A list of directories or folders to ignore, e.g.
 exclude_files = ["test", "src/**/*.ts"]
 DESC
   type        = list(string)
+  default     = []
 }
 
 #---------------------------------------------------------------------------------------------------
