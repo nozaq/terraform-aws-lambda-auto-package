@@ -126,11 +126,6 @@ variable "tracing_config" {
   default = null
 }
 
-variable "enable_vpc" {
-  description = "If set to true, enable vpc"
-  type        = bool
-}
-
 variable "vpc_config" {
   description = "Provide this to allow your function to access your VPC."
   default     = null
