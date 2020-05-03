@@ -98,5 +98,7 @@ resource "aws_lambda_function" "this" {
   lifecycle {
     ignore_changes = [filename]
   }
+  
+  depends_on = ["aws_iam_role_policy_attachment.basic", "aws_iam_role_policy_attachment.lambda"]
 }
 
