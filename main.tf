@@ -106,6 +106,6 @@ resource "aws_lambda_function" "this" {
     ignore_changes = [filename]
   }
   
-  depends_on = [aws_iam_role_policy_attachment.basic, aws_iam_role_policy_attachment.vpc.*, aws_cloudwatch_log_group.this]
+  depends_on = [aws_iam_role_policy_attachment.basic, aws_iam_role_policy_attachment.vpc[0], aws_cloudwatch_log_group.this]
 }
 
