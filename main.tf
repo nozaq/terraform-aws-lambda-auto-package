@@ -28,8 +28,7 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_iam_role_policy_attachment" "vpc" {
-  count = var.vpc_config == null ? 0 :1
-  
+  count = var.vpc_config == null ? 0 : 1
   role       = aws_iam_role.this.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
@@ -105,7 +104,7 @@ resource "aws_lambda_function" "this" {
   lifecycle {
     ignore_changes = [filename]
   }
-  
+
   depends_on = [aws_iam_role_policy_attachment.basic, aws_iam_role_policy_attachment.vpc[0], aws_cloudwatch_log_group.this]
 }
 
