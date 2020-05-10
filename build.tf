@@ -24,5 +24,6 @@ data "null_data_source" "build_dep" {
 data "archive_file" "source" {
   type        = "zip"
   source_dir  = data.null_data_source.build_dep.outputs.source_dir
+  excludes    = var.exclude_files
   output_path = var.output_path
 }
