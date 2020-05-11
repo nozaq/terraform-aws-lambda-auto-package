@@ -28,7 +28,7 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_iam_role_policy_attachment" "vpc" {
-  count = var.vpc_config == null ? 0 : 1
+  count      = var.vpc_config == null ? 0 : 1
   role       = aws_iam_role.this.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
