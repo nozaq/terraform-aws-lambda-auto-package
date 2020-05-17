@@ -159,3 +159,9 @@ variable "kms_key_arn" {
   type        = string
   default     = null
 }
+
+variable "allowed_services" {
+  description = "A list of AWS Services that are allowed to access this lambda."
+  type        = list(string)
+  default     = ["lambda.amazonaws.com"]
+}
