@@ -23,6 +23,12 @@ resource "aws_iam_role_policy_attachment" "basic" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+resource "aws_iam_role_policy_attachment" "vpc" {
+  count      = var.vpc_config == null ? 0 : 1
+  role       = aws_iam_role.this.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
+
 resource "aws_iam_role_policy_attachment" "lambda" {
   count = length(var.policy_arns)
 
@@ -34,7 +40,7 @@ resource "aws_iam_role_policy_attachment" "lambda" {
 # CloudWatch Log group
 #---------------------------------------------------------------------------------------------------
 resource "aws_cloudwatch_log_group" "this" {
-  name              = "/aws/lambda/${aws_lambda_function.this.function_name}"
+  name              = "/aws/lambda/${var.function_name}"
   retention_in_days = var.retention_in_days
   kms_key_id        = var.kms_key_id
 
@@ -94,5 +100,7 @@ resource "aws_lambda_function" "this" {
   lifecycle {
     ignore_changes = [filename]
   }
+
+  depends_on = [aws_iam_role_policy_attachment.basic, aws_iam_role_policy_attachment.vpc[0], aws_cloudwatch_log_group.this]
 }
 
