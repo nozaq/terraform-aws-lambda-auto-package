@@ -2,24 +2,20 @@
 # IAM role for Lambda function
 #---------------------------------------------------------------------------------------------------
 resource "aws_iam_role" "this" {
-  name_prefix = var.iam_role_name_prefix
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow"
-    }
-  ]
+  name_prefix        = var.iam_role_name_prefix
+  assume_role_policy = data.aws_iam_policy_document.assume.json
+  tags               = var.tags
 }
-EOF
 
-  tags = var.tags
+data "aws_iam_policy_document" "assume" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = var.allowed_services
+    }
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "basic" {
