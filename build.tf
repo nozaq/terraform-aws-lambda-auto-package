@@ -11,19 +11,13 @@ resource "null_resource" "build" {
   }
 }
 
-# Trick to run the build command before archiving.
-# See below for more detail.
-# https://github.com/terraform-providers/terraform-provider-archive/issues/11
-data "null_data_source" "build_dep" {
-  inputs = {
-    build_id   = length(null_resource.build) > 0 ? null_resource.build[0].id : ""
-    source_dir = var.source_dir
-  }
-}
-
 data "archive_file" "source" {
   type        = "zip"
-  source_dir  = data.null_data_source.build_dep.outputs.source_dir
+  source_dir  = var.source_dir
   excludes    = var.exclude_files
   output_path = var.output_path
+
+  depends_on = [
+    null_resource.build
+  ]
 }
