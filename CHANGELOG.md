@@ -2,6 +2,9 @@
 ## [Unreleased]
 
 
+<a name="0.3.0"></a>
+## [0.3.0] - 0001-01-01
+
 <a name="0.2.1"></a>
 ## [0.2.1] - 2021-11-21
 ### Refactor
@@ -20,7 +23,8 @@
 <a name="0.0.1"></a>
 ## 0.0.1 - 2019-08-04
 
-[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.2.1...HEAD
+[Unreleased]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/nozaq/terraform-aws-secure-baseline/compare/0.0.1...0.1.0
