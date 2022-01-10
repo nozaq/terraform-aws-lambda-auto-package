@@ -1,10 +1,31 @@
+terraform {
+  required_version = ">= 0.15.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.50.0"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = ">= 3.1.0"
+    }
+    archive = {
+      source  = "hashicorp/archive"
+      version = ">= 2.2.0"
+    }
+  }
+}
+
 #---------------------------------------------------------------------------------------------------
 # IAM role for Lambda function
 #---------------------------------------------------------------------------------------------------
+
 resource "aws_iam_role" "this" {
   name_prefix        = var.iam_role_name_prefix
   assume_role_policy = data.aws_iam_policy_document.assume.json
-  tags               = var.tags
+
+  tags = var.tags
 }
 
 data "aws_iam_policy_document" "assume" {
@@ -24,7 +45,8 @@ resource "aws_iam_role_policy_attachment" "basic" {
 }
 
 resource "aws_iam_role_policy_attachment" "vpc" {
-  count      = var.vpc_config == null ? 0 : 1
+  count = var.vpc_config == null ? 0 : 1
+
   role       = aws_iam_role.this.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
@@ -39,6 +61,7 @@ resource "aws_iam_role_policy_attachment" "lambda" {
 #---------------------------------------------------------------------------------------------------
 # CloudWatch Log group
 #---------------------------------------------------------------------------------------------------
+
 resource "aws_cloudwatch_log_group" "this" {
   name              = "/aws/lambda/${var.function_name}"
   retention_in_days = var.retention_in_days
