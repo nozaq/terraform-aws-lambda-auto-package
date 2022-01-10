@@ -3,6 +3,7 @@
 #---------------------------------------------------------------------------------------------------
 variable "tags" {
   description = "A mapping of tags to assign to resources."
+  type        = map(string)
   default = {
     Terraform = "true"
   }
@@ -19,7 +20,8 @@ variable "build_command" {
 
 variable "build_triggers" {
   description = "A map of values which should cause the build command to re-run. Values are meant to be interpolated references to variables or attributes of other resources."
-  default     = []
+  type        = map(string)
+  default     = {}
 }
 
 variable "source_dir" {
@@ -118,8 +120,8 @@ variable "dead_letter_config" {
 }
 
 variable "description" {
-  type        = string
   description = "Description of what your Lambda Function does."
+  type        = string
   default     = ""
 }
 
@@ -131,13 +133,13 @@ variable "layers" {
 
 variable "reserved_concurrent_executions" {
   description = "The amount of reserved concurrent executions for this lambda function. A value of 0 disables lambda from being triggered and -1 removes any concurrency limitations."
-  type        = string
+  type        = number
   default     = -1
 }
 
 variable "publish" {
   description = "Whether to publish creation/change as new Lambda Function Version."
-  type        = string
+  type        = bool
   default     = false
 }
 
@@ -151,13 +153,12 @@ variable "tracing_config" {
 
 variable "vpc_config" {
   description = "Provide this to allow your function to access your VPC."
-  default     = null
-}
+  type = object({
+    security_group_ids = list(string)
+    subnet_ids         = list(string)
+  })
 
-variable "kms_key_arn" {
-  description = "The ARN for the KMS encryption key."
-  type        = string
-  default     = null
+  default = null
 }
 
 variable "allowed_services" {
