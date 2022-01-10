@@ -1,6 +1,7 @@
 #---------------------------------------------------------------------------------------------------
 # General
 #---------------------------------------------------------------------------------------------------
+
 variable "tags" {
   description = "A mapping of tags to assign to resources."
   type        = map(string)
@@ -12,6 +13,7 @@ variable "tags" {
 #---------------------------------------------------------------------------------------------------
 # Build arguments
 #---------------------------------------------------------------------------------------------------
+
 variable "build_command" {
   description = "This is the build command to execute. It can be provided as a relative path to the current working directory or as an absolute path. It is evaluated in a shell, and can use environment variables or Terraform variables."
   type        = string
@@ -46,6 +48,7 @@ DESC
 #---------------------------------------------------------------------------------------------------
 # IAM Role arguments
 #---------------------------------------------------------------------------------------------------
+
 variable "iam_role_name_prefix" {
   description = "The prefix string for the name of IAM role for the lambda function."
   type        = string
@@ -61,6 +64,7 @@ variable "policy_arns" {
 #---------------------------------------------------------------------------------------------------
 # CloudWatch Log Group arguments
 #---------------------------------------------------------------------------------------------------
+
 variable "retention_in_days" {
   description = "Specifies the number of days you want to retain log events in the specified log group."
   type        = number
@@ -76,6 +80,7 @@ variable "kms_key_id" {
 #---------------------------------------------------------------------------------------------------
 # Lambda arguments
 #---------------------------------------------------------------------------------------------------
+
 variable "function_name" {
   description = "A unique name for your Lambda Function."
   type        = string
