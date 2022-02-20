@@ -1,6 +1,7 @@
 # terraform-aws-lambda-auto-package
 
-[![Github Actions](https://github.com/nozaq/terraform-aws-lambda-auto-package/workflows/Terraform/badge.svg)](https://github.com/nozaq/terraform-aws-lambda-auto-package/actions?workflow=Terraform)
+[![Github Actions](https://github.com/nozaq/terraform-aws-lambda-auto-package/actions/workflows/main.yml/badge.svg)](https://github.com/nozaq/terraform-aws-lambda-auto-package/actions/workflows/main.yml)
+[![Releases](https://img.shields.io/github/v/release/nozaq/terraform-aws-lambda-auto-package)](https://github.com/nozaq/terraform-aws-lambda-auto-package/releases/tag/latest)
 
 [Terraform Module Registry](https://registry.terraform.io/modules/nozaq/lambda-auto-package/aws)
 
