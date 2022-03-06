@@ -1,7 +1,3 @@
-<a name="unreleased"></a>
-## [Unreleased]
-
-
 <a name="0.3.0"></a>
 ## [0.3.0] - 0001-01-01
 
