@@ -25,6 +25,8 @@ resource "aws_iam_role" "this" {
   name_prefix        = var.iam_role_name_prefix
   assume_role_policy = data.aws_iam_policy_document.assume.json
 
+  permissions_boundary = var.permissions_boundary
+
   tags = var.tags
 }
 
