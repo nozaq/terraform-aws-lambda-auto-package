@@ -20,8 +20,8 @@ module "lambda" {
   output_path = "${path.module}/source.zip"
 
   build_triggers = {
-    requirements = "${base64sha256(file("${path.module}/source/package-lock.json"))}"
-    execute      = "${base64sha256(file("${path.module}/npm.sh"))}"
+    requirements = base64sha256(file("${path.module}/source/package-lock.json"))
+    execute      = base64sha256(file("${path.module}/npm.sh"))
   }
   build_command = "${path.module}/npm.sh ${path.module}/source"
 
