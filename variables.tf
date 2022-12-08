@@ -171,3 +171,9 @@ variable "allowed_services" {
   type        = list(string)
   default     = ["lambda.amazonaws.com"]
 }
+
+variable "lambda_kms_key_arn" {
+  description = "The ARN of the KMS Key to use when encrypting environment variables. Ignored unless `environment` is specified."
+  type        = string
+  default     = null
+}

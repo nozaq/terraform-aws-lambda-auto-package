@@ -82,6 +82,7 @@ Check [examples](./examples) for non-python examples.
 | <a name="input_exclude_files"></a> [exclude\_files](#input\_exclude\_files) | A list of directories or folders to ignore, e.g.<br>exclude\_files = ["test", "src/**/*.ts"] | `list(string)` | no |
 | <a name="input_iam_role_name_prefix"></a> [iam\_role\_name\_prefix](#input\_iam\_role\_name\_prefix) | The prefix string for the name of IAM role for the lambda function. | `string` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | The ARN of the KMS Key to use when encrypting log data. | `string` | no |
+| <a name="input_lambda_kms_key_arn"></a> [lambda\_kms\_key\_arn](#input\_lambda\_kms\_key\_arn) | The ARN of the KMS Key to use when encrypting environment variables. Ignored unless `environment` is specified. | `string` | no |
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. | `list(string)` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. | `number` | no |
 | <a name="input_policy_arns"></a> [policy\_arns](#input\_policy\_arns) | A list of IAM policy ARNs attached to the lambda function. | `list(string)` | no |
