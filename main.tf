@@ -76,10 +76,21 @@ resource "aws_cloudwatch_log_group" "this" {
 # Lambda function
 #---------------------------------------------------------------------------------------------------
 
+locals {
+  lambda_filename = try(
+    data.archive_file.source[0].output_path,
+    var.output_path
+  )
+  lambda_source_code_hash = try(
+    data.archive_file.source[0].output_base64sha256,
+    filebase64sha256(var.output_path)
+  )
+}
+
 resource "aws_lambda_function" "this" {
-  filename         = data.archive_file.source.output_path
+  filename         = local.lambda_filename
   role             = aws_iam_role.this.arn
-  source_code_hash = data.archive_file.source.output_base64sha256
+  source_code_hash = local.lambda_source_code_hash
 
   runtime                        = var.runtime
   handler                        = var.handler

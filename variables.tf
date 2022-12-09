@@ -27,12 +27,12 @@ variable "build_triggers" {
 }
 
 variable "source_dir" {
-  description = "A path to the directory which contains source files."
+  description = "A path to the directory which contains source files to be archived. If set to `null`, then no archive file is created."
   type        = string
 }
 
 variable "output_path" {
-  description = "A path to which the source directory is archived before uploading to AWS."
+  description = "A path to the archive file which will be uploaded to AWS. If `source_dir` is not `null`, then a file is created at `output_path` containing the archived contents of `source_dir`."
   type        = string
 }
 

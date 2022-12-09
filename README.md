@@ -70,9 +70,9 @@ Check [examples](./examples) for non-python examples.
 |------|-------------|------|:--------:|
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | A unique name for your Lambda Function. | `string` | yes |
 | <a name="input_handler"></a> [handler](#input\_handler) | The function entrypoint in your code. | `string` | yes |
-| <a name="input_output_path"></a> [output\_path](#input\_output\_path) | A path to which the source directory is archived before uploading to AWS. | `string` | yes |
+| <a name="input_output_path"></a> [output\_path](#input\_output\_path) | A path to the archive file which will be uploaded to AWS. If `source_dir` is not `null`, then a file is created at `output_path` containing the archived contents of `source_dir`. | `string` | yes |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | The identifier of the function's runtime. | `string` | yes |
-| <a name="input_source_dir"></a> [source\_dir](#input\_source\_dir) | A path to the directory which contains source files. | `string` | yes |
+| <a name="input_source_dir"></a> [source\_dir](#input\_source\_dir) | A path to the directory which contains source files to be archived. If set to `null`, then no archive file is created. | `string` | yes |
 | <a name="input_allowed_services"></a> [allowed\_services](#input\_allowed\_services) | A list of AWS Services that are allowed to access this lambda. | `list(string)` | no |
 | <a name="input_build_command"></a> [build\_command](#input\_build\_command) | This is the build command to execute. It can be provided as a relative path to the current working directory or as an absolute path. It is evaluated in a shell, and can use environment variables or Terraform variables. | `string` | no |
 | <a name="input_build_triggers"></a> [build\_triggers](#input\_build\_triggers) | A map of values which should cause the build command to re-run. Values are meant to be interpolated references to variables or attributes of other resources. | `map(string)` | no |
