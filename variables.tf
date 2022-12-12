@@ -27,18 +27,38 @@ variable "build_triggers" {
 }
 
 variable "source_dir" {
-  description = "A path to the directory which contains source files to be archived. If set to `null`, then no archive file is created."
+  description = "A path to the directory which contains source files to be archived into a deployment package. If set to `null`, then no archive file is created."
   type        = string
+  default     = null
 }
 
 variable "output_path" {
-  description = "A path to the archive file which will be uploaded to AWS. If `source_dir` is not `null`, then a file is created at `output_path` containing the archived contents of `source_dir`."
+  description = "A path to the deployment archive which will be uploaded to AWS. If `source_dir` is not `null`, then a file is created at `output_path` containing the archived contents of `source_dir`."
   type        = string
+  default     = null
+}
+
+variable "s3_bucket" {
+  description = "An existing S3 bucket, containing the function's deployment package. If `output_path` is also specified, the archive will be uploaded here."
+  type        = string
+  default     = null
+}
+
+variable "s3_key" {
+  description = "S3 key of an object containing the function's deployment package. If `output_path` is also specified, the archive will be uploaded here."
+  type        = string
+  default     = null
+}
+
+variable "s3_object_version" {
+  description = "S3 object version containing the function's deployment package."
+  type        = string
+  default     = null
 }
 
 variable "exclude_files" {
   description = <<DESC
-A list of directories or folders to ignore, e.g.
+A list of source directories or folders to ignore when creating the archive, e.g.
 exclude_files = ["test", "src/**/*.ts"]
 DESC
   type        = list(string)

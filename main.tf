@@ -137,6 +137,10 @@ resource "aws_lambda_function" "this" {
   # configuration and Terraform will show a perpetual difference of adding the key.
   kms_key_arn = var.environment == null ? null : var.lambda_kms_key_arn
 
+  s3_bucket         = var.s3_bucket
+  s3_key            = var.s3_key
+  s3_object_version = var.s3_object_version
+
   tags = var.tags
 
   lifecycle {
