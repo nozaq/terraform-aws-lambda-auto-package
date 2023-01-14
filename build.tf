@@ -12,6 +12,7 @@ resource "null_resource" "build" {
 }
 
 data "archive_file" "source" {
+  count       = var.source_dir != null ? 1 : 0
   type        = "zip"
   source_dir  = var.source_dir
   excludes    = var.exclude_files

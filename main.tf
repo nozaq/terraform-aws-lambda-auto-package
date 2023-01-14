@@ -76,10 +76,21 @@ resource "aws_cloudwatch_log_group" "this" {
 # Lambda function
 #---------------------------------------------------------------------------------------------------
 
+locals {
+  lambda_filename = try(
+    data.archive_file.source[0].output_path,
+    var.output_path
+  )
+  lambda_source_code_hash = try(
+    data.archive_file.source[0].output_base64sha256,
+    filebase64sha256(var.output_path)
+  )
+}
+
 resource "aws_lambda_function" "this" {
-  filename         = data.archive_file.source.output_path
+  filename         = local.lambda_filename
   role             = aws_iam_role.this.arn
-  source_code_hash = data.archive_file.source.output_base64sha256
+  source_code_hash = local.lambda_source_code_hash
 
   runtime                        = var.runtime
   handler                        = var.handler
@@ -125,6 +136,10 @@ resource "aws_lambda_function" "this" {
   # environment variables are not in use, the AWS Lambda API does not save this 
   # configuration and Terraform will show a perpetual difference of adding the key.
   kms_key_arn = var.environment == null ? null : var.lambda_kms_key_arn
+
+  s3_bucket         = var.s3_bucket
+  s3_key            = var.s3_key
+  s3_object_version = var.s3_object_version
 
   tags = var.tags
 
