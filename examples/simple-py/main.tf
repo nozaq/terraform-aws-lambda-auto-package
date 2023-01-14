@@ -20,8 +20,8 @@ module "lambda" {
   output_path = "${path.module}/source.zip"
 
   build_triggers = {
-    requirements = "${base64sha256(file("${path.module}/source/requirements.txt"))}"
-    execute      = "${base64sha256(file("${path.module}/pip.sh"))}"
+    requirements = base64sha256(file("${path.module}/source/requirements.txt"))
+    execute      = base64sha256(file("${path.module}/pip.sh"))
   }
   build_command = "${path.module}/pip.sh ${path.module}/source"
 

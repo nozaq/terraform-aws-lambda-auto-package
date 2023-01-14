@@ -61,6 +61,12 @@ variable "policy_arns" {
   default     = []
 }
 
+variable "permissions_boundary" {
+  description = "ARN of the policy that is used to set the permissions boundary for the role."
+  type        = string
+  default     = null
+}
+
 #---------------------------------------------------------------------------------------------------
 # CloudWatch Log Group arguments
 #---------------------------------------------------------------------------------------------------
@@ -170,4 +176,10 @@ variable "allowed_services" {
   description = "A list of AWS Services that are allowed to access this lambda."
   type        = list(string)
   default     = ["lambda.amazonaws.com"]
+}
+
+variable "lambda_kms_key_arn" {
+  description = "The ARN of the KMS Key to use when encrypting environment variables. Ignored unless `environment` is specified."
+  type        = string
+  default     = null
 }

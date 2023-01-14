@@ -25,6 +25,8 @@ resource "aws_iam_role" "this" {
   name_prefix        = var.iam_role_name_prefix
   assume_role_policy = data.aws_iam_policy_document.assume.json
 
+  permissions_boundary = var.permissions_boundary
+
   tags = var.tags
 }
 
@@ -117,6 +119,12 @@ resource "aws_lambda_function" "this" {
       subnet_ids         = vpc_config.value.subnet_ids
     }
   }
+
+  # If this configuration is not provided when environment variables are in use,
+  # AWS Lambda uses a default service key. If this configuration is provided when 
+  # environment variables are not in use, the AWS Lambda API does not save this 
+  # configuration and Terraform will show a perpetual difference of adding the key.
+  kms_key_arn = var.environment == null ? null : var.lambda_kms_key_arn
 
   tags = var.tags
 
